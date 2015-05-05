@@ -31,7 +31,7 @@
                 
             </script>
             <%
-            response.sendRedirect("index.html");
+            response.sendRedirect("error.html");
         }
         else
         {
