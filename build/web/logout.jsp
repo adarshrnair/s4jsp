@@ -12,6 +12,7 @@
         <title>LOGOUT</title>
     </head>
     <body>
+        <% session.invalidate(); %>
         <h1>LOGGED OUT SUCCESSFULLY... </h1>
         <p><a href="index.html">Click here to Log in / Register</a></p>
     </body>
