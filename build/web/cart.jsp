@@ -181,6 +181,7 @@ font-weight: bold;
              <form id="f3" action="buy.jsp">
                  <input type="submit" value="BUY">
              </form>
+                  <a href="logout.jsp">LOG OUT !! </a>
              </center>
              <%
          }

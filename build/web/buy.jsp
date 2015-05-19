@@ -186,6 +186,7 @@ font-weight: bold;
              }%>
                  </table><br>
                  <h1>THANK YOU FOR SHOPPING WITH US !!! </h1>
+                 <a href="logout.jsp">LOG OUT !! </a>
              </form>
              </center>
              <%

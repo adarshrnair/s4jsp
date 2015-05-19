@@ -132,10 +132,12 @@ font-weight: bold;
              %>
              
              <p>Welcome <%=session.getAttribute("user")%></p>
-             
+             <br>
+             <p><a href="order.jsp">Your Orders</a></p>
              <br>
              <p> <a href="cart.jsp">Your cart = <%= rs.getInt(1) %></a></p>
              <br>
+              <a href="logout.jsp">LOG OUT !! </a>
              <br><br><br><br><br><br>
              <br><br><br><br>
 

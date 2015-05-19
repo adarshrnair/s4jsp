@@ -107,18 +107,11 @@ font-weight: bold;
          Connection con=DriverManager.getConnection("jdbc:derby://localhost:1527/project", "project", "project");
         PreparedStatement ps=null;
         PreparedStatement ps1=null;
-        PreparedStatement ps4=null;
-        PreparedStatement ps5=null;
         ResultSet rs=null;
         int p=0;
-        ps4=con.prepareStatement("insert into buy (userid, item) select userid,item from orders where userid=?");
-        
+    
          String s=session.getAttribute("user")+" ";
-  ps4.setString(1, s);
-  ps4.executeUpdate();
-  ps5=con.prepareStatement("delete from orders where userid=?");
-  ps5.setString(1, s);
-  ps5.executeUpdate();
+  
           
         ps1=con.prepareStatement("select count(item) from orders where userid=?");
         ps1.setString(1, s);
@@ -185,9 +178,8 @@ font-weight: bold;
              <%
              }%>
                  </table><br>
-                 <h1>THANK YOU FOR SHOPPING WITH US !!! </h1>
-                 <a href="logout.jsp">LOG OUT !! </a>
-             </form>
+             
+                  <a href="logout.jsp">LOG OUT !! </a>
              </center>
              <%
          }

@@ -8,7 +8,27 @@
 <head >
 	
 	<script>
+function name1()
+{
+    var x=document.getElementById("p1");
+    var p=/^[a-zA-Z]+$/;
+    if(!p.test(x.value))
+    {
+        alert("INVALID NAME ");
+    }
+    
+    
+}
 
+function phone1()
+{
+    var x=document.getElementById("p2");
+    var p=/^[0-9]{10}$/;
+    if(!p.test(x.value))
+    {
+        alert("ENTER A VALID PHONE NUMBER");
+    }
+}
 
 
 </script>
@@ -84,10 +104,10 @@ font-weight: bold;
     Kindly Fill in the form ! 
     <br>
     <form name="f3" action="reg.jsp" method="POST">
-        Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <input type="text" name="name">
-        <br>Phone &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <input type="text" name="phone">
-        <br>username : <input type="text" name="user">
-        <br>password : <input type="password" name="pass">
+        First Name: <input id="p1" required type="text" name="name" onblur="name1()">
+        <br>Phone &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <input id="p2" required type="text" name="phone" onBlur="phone1()">
+        <br>username : <input required type="text" name="user">
+        <br>password : <input required type="password" name="pass">
         <br> <input type="submit" value="Register">
     </form>
 </center>
