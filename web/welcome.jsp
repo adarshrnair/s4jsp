@@ -99,11 +99,16 @@ font-weight: bold;
 <body  onload="input()">
 
     <%! int q;%>
+    <%
+      //   if(session.getAttribute("user")!= null || session.getAttribute("user")!= "null" || session.getAttribute("user")!= "" || session.getAttribute("user")!= " ")
+       //  {
+             %>
 
  <div>
      
      <center> <h1>Online Stationary Store</center></h1>
     <%
+      
          Connection con=DriverManager.getConnection("jdbc:derby://localhost:1527/project", "project", "project");
         PreparedStatement ps=null;
         PreparedStatement ps1=null;
@@ -119,23 +124,34 @@ font-weight: bold;
         ps1=con.prepareStatement("select count(item) from orders where userid=?");
         ps1.setString(1, s);
        rs=ps1.executeQuery();
-       int q;
+       int q = 0;
+       String z=null;
           //String q=rs.getString(1);
        while(rs.next())
        {
-        //q=rs.getInt(1);
+        q=rs.getInt(1);
+       }
+       
         %>
      <img src="020-Design-Production-furnishings-fittings-Stationery-stores.jpg" alt="MAHARAJA's EXPRESS" style="float:right" width="500" height="200" border="10" align="center">
      <%
-         if(session.getAttribute("user")!=null || session.getAttribute("user")!="")
+       
+         if(session.getAttribute("user")==null || session.getAttribute("user") == "" || session.getAttribute("user") == " " )
+         {  
+            out.println("HELL ");
+            response.sendRedirect("error.html");
+             }
+        
+         else
          {
+             
              %>
              
              <p>Welcome <%=session.getAttribute("user")%></p>
              <br>
              <p><a href="order.jsp">Your Orders</a></p>
              <br>
-             <p> <a href="cart.jsp">Your cart = <%= rs.getInt(1) %></a></p>
+             <p> <a href="cart.jsp">Your cart = <%= q %></a></p>
              <br>
               <a href="logout.jsp">LOG OUT !! </a>
              <br><br><br><br><br><br>
@@ -186,11 +202,7 @@ font-weight: bold;
              
              <%
          }
-         else
-         {
-             response.sendRedirect("error.html");
-         }
-       }
+       
          %>
  
 

@@ -116,22 +116,24 @@ font-weight: bold;
         ps1=con.prepareStatement("select count(item) from orders where userid=?");
         ps1.setString(1, s);
        rs=ps1.executeQuery();
-       int q;
+       int q=0;
           //String q=rs.getString(1);
        while(rs.next())
        {
-        //q=rs.getInt(1);
+        q=rs.getInt(1);}
         %>
      <img src="020-Design-Production-furnishings-fittings-Stationery-stores.jpg" alt="MAHARAJA's EXPRESS" style="float:right" width="500" height="200" border="10" align="center">
      <%
-         if(session.getAttribute("user")!=null || session.getAttribute("user")!="")
+         if(session.getAttribute("user")==null || session.getAttribute("user") == "" || session.getAttribute("user") == " " )
          {
+             response.sendRedirect("error.html");
              %>
+             }
              
              <p>Welcome <%=session.getAttribute("user")%></p>
              
              <br>
-             <p> <a href="cart.jsp">Your cart = <%= rs.getInt(1) %></a></p>
+             <p> <a href="cart.jsp">Your cart = <%= q %></a></p>
              <br>
              <br><br><br><br><br><br>
              <br><br><br><br>
@@ -187,10 +189,65 @@ font-weight: bold;
          }
          
          else
-         {
-             response.sendRedirect("error.html");
+         { %>
+             <p>Welcome <%=session.getAttribute("user")%></p>
+             
+             <br>
+             <p> <a href="cart.jsp">Your cart = <%= q %></a></p>
+             <br>
+             <br><br><br><br><br><br>
+             <br><br><br><br>
+<center>
+                 <table border="1">
+                       <tr>
+                         <th>Product</th>
+                         <th>Quantity</th>
+                     </tr>
+             <%
+             ps=con.prepareStatement("select name from products where id in (select item from orders where userid=?)");
+             ps.setString(1, s);
+             ResultSet rs1=ps.executeQuery();
+             while(rs1.next())
+             {
+             %>
+             
+             
+                   
+                     <tr>
+                         <td><%=rs1.getString("name")%></td>
+                         <td> 
+                         <%
+                         PreparedStatement ps2=con.prepareStatement("select count(item) from orders where userid=? AND item in(select id from products where name = ?) ");
+                         ps2.setString(1, s);
+                         ps2.setString(2, rs1.getString("name"));
+                         ResultSet rs2=ps2.executeQuery();
+                         while(rs2.next())
+                         {
+                         %>
+                         <%= rs2.getInt(1)  %>
+                         </td>
+                         <%}%>
+                         
+                     </tr>
+                     
+                     
+                 
+
+
+
+             
+             
+             <%
+             }%>
+                 </table><br>
+             <form id="f3" action="buy.jsp">
+                 <input type="submit" value="BUY">
+             </form>
+                  <a href="logout.jsp">LOG OUT !! </a>
+             </center>
+             <%
          }
-       }
+       
          %>
  
 

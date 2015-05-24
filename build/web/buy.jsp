@@ -131,8 +131,14 @@ font-weight: bold;
         %>
      <img src="020-Design-Production-furnishings-fittings-Stationery-stores.jpg" alt="MAHARAJA's EXPRESS" style="float:right" width="500" height="200" border="10" align="center">
      <%
-         if(session.getAttribute("user")!=null || session.getAttribute("user")!="")
+         if(session.getAttribute("user")==null || session.getAttribute("user") == "" || session.getAttribute("user") == " " )
          {
+             response.sendRedirect("error.html");
+         }
+         
+         else
+         {
+            
              %>
              
              <p>Welcome <%=session.getAttribute("user")%></p>
@@ -190,11 +196,6 @@ font-weight: bold;
              </form>
              </center>
              <%
-         }
-         
-         else
-         {
-             response.sendRedirect("error.html");
          }
        }
          %>

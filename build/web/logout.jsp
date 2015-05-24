@@ -12,7 +12,11 @@
         <title>LOGOUT</title>
     </head>
     <body>
-        <% session.invalidate(); %>
+        <%  session.setAttribute("user","");
+            session.invalidate();
+           // session.getAttribute("user");
+       
+        %>
         <h1>LOGGED OUT SUCCESSFULLY... </h1>
         <p><a href="index.html">Click here to Log in / Register</a></p>
     </body>
